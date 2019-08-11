@@ -1,0 +1,52 @@
+{
+	"name": "reconciled",
+	"version": "0.0.0",
+	"description": "Simple way to build a custom React reconciler",
+	"license": "MIT",
+	"repository": "vadimdemedes/reconciled",
+	"author": {
+		"name": "Vadim Demedes",
+		"email": "vdemedes@gmail.com",
+		"url": "vadimdemedes.com"
+	},
+	"engines": {
+		"node": ">=6"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		""
+	],
+	"dependencies": {
+		"object.omit": "^3.0.0",
+		"ow": "^0.13.2",
+		"react-reconciler": "^0.21.0",
+		"scheduler": "^0.15.0"
+	},
+	"devDependencies": {
+		"@babel/preset-react": "^7.0.0",
+		"ava": "^2.2.0",
+		"eslint-config-xo-react": "^0.20.0",
+		"eslint-plugin-react": "^7.14.3",
+		"eslint-plugin-react-hooks": "^1.7.0",
+		"react": "^16.9.0",
+		"undom": "^0.4.0",
+		"xo": "^0.24.0"
+	},
+	"ava": {
+		"babel": {
+			"testOptions": {
+				"presets": [
+					"@babel/preset-react"
+				]
+			}
+		}
+	},
+	"xo": {
+		"extends": "xo-react"
+	}
+}
