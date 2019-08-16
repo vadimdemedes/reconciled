@@ -12,11 +12,20 @@ module.exports = config => {
 		createNode: ow.function,
 		createTextNode: ow.function,
 		setTextNodeValue: ow.function,
-		appendNode: ow.function,
-		insertBeforeNode: ow.function,
-		updateNode: ow.function,
-		removeNode: ow.function
+		appendNode: ow.optional.function,
+		insertBeforeNode: ow.optional.function,
+		updateNode: ow.optional.function,
+		removeNode: ow.optional.function
 	}));
+
+	let supportsMutation = true;
+
+	for (const method of ['appendNode', 'insertBeforeNode', 'updateNode', 'removeNode']) {
+		if (typeof config[method] !== 'function') {
+			supportsMutation = false;
+			break;
+		}
+	}
 
 	const fullConfig = {
 		schedulePassiveEffects: unstable_scheduleCallback, // eslint-disable-line camelcase
@@ -31,22 +40,47 @@ module.exports = config => {
 		},
 		getChildHostContext: () => NO_CONTEXT,
 		shouldSetTextContent: () => false,
-		createInstance: (type, props) => config.createNode(type, omit(props, 'children')),
-		createTextInstance: text => config.createTextNode(text),
-		resetTextContent: node => config.setTextNodeValue(node, ''),
 		getPublicInstance: instance => instance,
-		appendInitialChild: (parentNode, childNode) => config.appendNode(parentNode, childNode),
-		appendChild: (parentNode, childNode) => config.appendNode(parentNode, childNode),
-		insertBefore: (parentNode, newChildNode, beforeChildNode) => config.insertBeforeNode(parentNode, newChildNode, beforeChildNode),
+		createInstance: (type, props) => {
+			return config.createNode(type, omit(props, 'children'));
+		},
+		createTextInstance: text => {
+			return config.createTextNode(text);
+		},
+		resetTextContent: node => {
+			config.setTextNodeValue(node, '');
+		},
+		// Append root node to a container
+		appendInitialChild: (parentNode, childNode) => {
+			config.appendNode(parentNode, childNode);
+		},
+		appendChild: (parentNode, childNode) => {
+			config.appendNode(parentNode, childNode);
+		},
+		insertBefore: (parentNode, newChildNode, beforeChildNode) => {
+			config.insertBeforeNode(parentNode, newChildNode, beforeChildNode);
+		},
 		finalizeInitialChildren: noop,
-		supportsMutation: true,
-		appendChildToContainer: (parentNode, childNode) => config.appendNode(parentNode, childNode),
-		insertInContainerBefore: (parentNode, newChildNode, beforeChildNode) => config.insertBeforeNode(parentNode, newChildNode, beforeChildNode),
-		removeChildFromContainer: (parentNode, childNode) => config.removeNode(parentNode, childNode),
+		supportsMutation,
+		appendChildToContainer: (parentNode, childNode) => {
+			config.appendNode(parentNode, childNode);
+		},
+		insertInContainerBefore: (parentNode, newChildNode, beforeChildNode) => {
+			config.insertBeforeNode(parentNode, newChildNode, beforeChildNode);
+		},
+		removeChildFromContainer: (parentNode, childNode) => {
+			config.removeNode(parentNode, childNode);
+		},
 		prepareUpdate: () => true,
-		commitUpdate: (node, updatePayload, type, oldProps, newProps) => config.updateNode(node, omit(oldProps, 'children'), omit(newProps, 'children')),
-		commitTextUpdate: (node, oldText, newText) => config.setTextNodeValue(node, newText),
-		removeChild: (parentNode, childNode) => config.removeNode(parentNode, childNode)
+		commitUpdate: (node, updatePayload, type, oldProps, newProps) => {
+			config.updateNode(node, omit(oldProps, 'children'), omit(newProps, 'children'));
+		},
+		commitTextUpdate: (node, oldText, newText) => {
+			config.setTextNodeValue(node, newText);
+		},
+		removeChild: (parentNode, childNode) => {
+			config.removeNode(parentNode, childNode);
+		}
 	};
 
 	const reconciler = createReconciler(fullConfig);
