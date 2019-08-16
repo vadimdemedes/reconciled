@@ -34,7 +34,7 @@ const serialize = el => {
 };
 
 // Naive reconciler for testing
-const reconciler = reconciled({
+const config = {
 	createNode: (type, props) => {
 		const node = document.createElement(type);
 
@@ -62,7 +62,9 @@ const reconciler = reconciled({
 		}
 	},
 	removeNode: (parentNode, childNode) => parentNode.removeChild(childNode)
-});
+};
+
+const reconciler = reconciled(config);
 
 // Utility method to DRY tests up
 const render = node => {
@@ -179,4 +181,21 @@ test('remove child node', t => {
 
 	rerender(<div><span id="first"/></div>);
 	t.is(serialize(), '<div><span id="first"></span></div>');
+});
+
+test('execute render function after commit', t => {
+	let callCount = 0;
+
+	const reconciler = reconciled({
+		...config,
+		render: () => callCount++
+	});
+
+	const rootNode = document.createElement('body');
+	const tree = reconciler.create(rootNode);
+	tree.render(<h1>Hello Jane</h1>);
+	t.is(callCount, 1);
+
+	tree.render(<h1>Hello Hopper</h1>);
+	t.is(callCount, 2);
 });

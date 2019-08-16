@@ -9,6 +9,7 @@ const noop = () => {};
 
 module.exports = config => {
 	ow(config, ow.object.exactShape({
+		render: ow.optional.function,
 		createNode: ow.function,
 		createTextNode: ow.function,
 		setTextNodeValue: ow.function,

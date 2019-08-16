@@ -266,6 +266,11 @@ Learn more:
 
 - [Node.removeChild()](https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild)
 
+##### render()
+
+Callback which is called after every change is completed by the reconciler.
+Useful for renderers like [Ink](https://github.com/vadimdemedes/ink), which have to build custom output for environment that renderer is built for. In Ink's case, it's terminal, so there's no DOM like in the browser. Use this callback as an indication that there has been a change and UI needs to be updated.
+
 ### reconciler
 
 Type: `object`
