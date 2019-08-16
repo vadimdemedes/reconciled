@@ -1,4 +1,4 @@
-# reconciled [![Build Status](https://travis-ci.com/vadimdemedes/reconciled.svg?branch=master)](https://travis-ci.com/vadimdemedes/reconciled)
+# reconciled [![Build Status](https://travis-ci.org/vadimdemedes/reconciled.svg?branch=master)](https://travis-ci.org/vadimdemedes/reconciled)
 
 > Simple way to build a custom React reconciler
 
