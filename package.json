@@ -10,7 +10,7 @@
 		"url": "vadimdemedes.com"
 	},
 	"engines": {
-		"node": ">=6"
+		"node": ">=8"
 	},
 	"scripts": {
 		"test": "xo && ava"
@@ -19,7 +19,10 @@
 		"index.js"
 	],
 	"keywords": [
-		""
+		"react",
+		"reconciler",
+		"custom",
+		"react-reconciler"
 	],
 	"dependencies": {
 		"object.omit": "^3.0.0",
