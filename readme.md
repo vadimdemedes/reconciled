@@ -1,6 +1,6 @@
 # reconciled [![Build Status](https://travis-ci.org/vadimdemedes/reconciled.svg?branch=master)](https://travis-ci.org/vadimdemedes/reconciled)
 
-> Simple way to build a custom React reconciler
+> Simple way to build a custom React renderer
 
 
 ## Install
@@ -44,7 +44,7 @@ app.unmount();
 
 ### reconciled(config)
 
-Create a reconciler with the specified config. Returns a [reconciler](#reconciler) object.
+Create a reconciler with the specified config for your custom renderering. Returns a [reconciler](#reconciler) object.
 
 #### config
 
