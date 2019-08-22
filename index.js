@@ -14,9 +14,9 @@ module.exports = config => {
 		createTextNode: ow.function,
 		setTextNodeValue: ow.function,
 		appendNode: ow.function,
-		insertBeforeNode: ow.function,
-		updateNode: ow.function,
-		removeNode: ow.function
+		insertBeforeNode: ow.optional.function,
+		updateNode: ow.optional.function,
+		removeNode: ow.optional.function
 	}));
 
 	const fullConfig = {
