@@ -40,11 +40,18 @@ app.unmount();
 ```
 
 
+## What is this for?
+
+React itself doesn't require a certain environment to run. In simple terms, it only manages components and updates. Then, renderer takes representation of this component tree and displays it somewhere. For example, every React app in the browser uses [react-dom](https://github.com/facebook/react/tree/master/packages/react-dom) renderer. [react-native](https://github.com/facebook/react-native) lets you build mobile native apps with React. [Ink](https://github.com/vadimdemedes/ink) renders your React app in the terminal. There's even [react-360](https://github.com/facebook/react-360) renderer for building VR apps.
+
+Custom React renderers let you render React apps anywhere you want, as long as you can build a custom renderer for it. This is where `reconciled` comes in. There's not a lot of documentation around building custom renderers, so I extracted all my knowledge of building them for [Ink](https://github.com/vadimdemedes/ink) into a simple-to-use module. Enjoy.
+
+
 ## API
 
 ### reconciled(config)
 
-Create a reconciler with the specified config for your custom renderering. Returns a [reconciler](#reconciler) object.
+Create a reconciler with the specified config for your custom renderering. Returns a [reconciler](#reconciler) object. Reconciler is a set of methods that let you synchronize React's state with your custom output (see example above).
 
 #### config
 
