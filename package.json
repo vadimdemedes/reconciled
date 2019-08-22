@@ -1,6 +1,6 @@
 {
 	"name": "reconciled",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Simple way to build a custom React renderer",
 	"license": "MIT",
 	"repository": "vadimdemedes/reconciled",
