@@ -13,20 +13,11 @@ module.exports = config => {
 		createNode: ow.function,
 		createTextNode: ow.function,
 		setTextNodeValue: ow.function,
-		appendNode: ow.optional.function,
-		insertBeforeNode: ow.optional.function,
-		updateNode: ow.optional.function,
-		removeNode: ow.optional.function
+		appendNode: ow.function,
+		insertBeforeNode: ow.function,
+		updateNode: ow.function,
+		removeNode: ow.function
 	}));
-
-	let supportsMutation = true;
-
-	for (const method of ['appendNode', 'insertBeforeNode', 'updateNode', 'removeNode']) {
-		if (typeof config[method] !== 'function') {
-			supportsMutation = false;
-			break;
-		}
-	}
 
 	const fullConfig = {
 		schedulePassiveEffects: unstable_scheduleCallback, // eslint-disable-line camelcase
@@ -62,7 +53,7 @@ module.exports = config => {
 			config.insertBeforeNode(parentNode, newChildNode, beforeChildNode);
 		},
 		finalizeInitialChildren: noop,
-		supportsMutation,
+		supportsMutation: true,
 		appendChildToContainer: (parentNode, childNode) => {
 			config.appendNode(parentNode, childNode);
 		},
