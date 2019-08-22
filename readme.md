@@ -18,22 +18,10 @@ Here's a minimal version of `react-dom` implemented with `reconciled` without su
 const reconciled = require('reconciled');
 
 const reconciler = reconciled({
-  createNode: (type, props) => {
-    const node = document.createElement(type);
-
-    for (const [key, value] of Object.entries(props)) {
-      node.setAttribute(key, value);
-    }
-
-    return node;
-  },
+  createNode: type => document.createElement(type),
   createTextNode: text => document.createTextNode(text),
-  setTextNodeValue: (node, text) => {
-    node.textContent = text;
-  },
-  appendNode: (parentNode, childNode) => {
-    parentNode.appendChild(childNode);
-  }
+  setTextNodeValue: (node, text) => (node.textContent = text),
+  appendNode: (parentNode, childNode) => parentNode.appendChild(childNode)
 });
 
 const app = reconciler.create(document.body);
