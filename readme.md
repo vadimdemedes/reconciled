@@ -41,12 +41,16 @@ app.render(<h1>Stranger Things</h1>);
 app.unmount();
 ```
 
+[![Edit reconciled-demo](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/dreamy-hypatia-41w3w?fontsize=14)
+
 
 ## What is this for?
 
 React itself doesn't require a certain environment to run. In simple terms, it only manages components and updates. Then, renderer takes representation of this component tree and displays it somewhere. For example, every React app in the browser uses [react-dom](https://github.com/facebook/react/tree/master/packages/react-dom) renderer. [react-native](https://github.com/facebook/react-native) lets you build mobile native apps with React. [Ink](https://github.com/vadimdemedes/ink) renders your React app in the terminal. There's even [react-360](https://github.com/facebook/react-360) renderer for building VR apps.
 
 Custom React renderers let you render React apps anywhere you want, as long as you can build a custom renderer for it. This is where `reconciled` comes in. There's not a lot of documentation around building custom renderers, so I extracted all my knowledge of building them for [Ink](https://github.com/vadimdemedes/ink) into a simple-to-use module. Enjoy.
+
+I think `reconciled` is a good first step in learning how to make a React renderer. If you notice that reconciled is too limited for your use case, I'd recommend checking out its source code and building your renderer without using `reconciled`.
 
 
 ## API
