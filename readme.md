@@ -1,4 +1,4 @@
-# reconciled [![Build Status](https://travis-ci.org/vadimdemedes/reconciled.svg?branch=master)](https://travis-ci.org/vadimdemedes/reconciled)
+# reconciled [![Build Status](https://github.com/vadimdemedes/reconciled/workflows/test/badge.svg)](https://github.com/vadimdemedes/reconciled/actions)
 
 > Simple way to build a custom React renderer
 
