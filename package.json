@@ -32,10 +32,12 @@
 	},
 	"devDependencies": {
 		"@babel/preset-react": "^7.0.0",
+		"@vdemedes/prettier-config": "^2.0.1",
 		"ava": "^2.2.0",
 		"eslint-config-xo-react": "^0.20.0",
 		"eslint-plugin-react": "^7.14.3",
 		"eslint-plugin-react-hooks": "^1.7.0",
+		"prettier": "^2.5.1",
 		"react": "^16.9.0",
 		"undom": "^0.4.0",
 		"xo": "^0.24.0"
@@ -50,6 +52,8 @@
 		}
 	},
 	"xo": {
-		"extends": "xo-react"
-	}
+		"extends": "xo-react",
+		"prettier": true
+	},
+	"prettier": "@vdemedes/prettier-config"
 }

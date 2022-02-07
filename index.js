@@ -1,5 +1,8 @@
 'use strict';
-const {unstable_scheduleCallback, unstable_cancelCallback} = require('scheduler'); // eslint-disable-line camelcase
+const {
+	unstable_scheduleCallback,
+	unstable_cancelCallback,
+} = require('scheduler'); // eslint-disable-line camelcase
 const createReconciler = require('react-reconciler');
 const omit = require('object.omit');
 const ow = require('ow');
@@ -8,16 +11,19 @@ const NO_CONTEXT = true;
 const noop = () => {};
 
 module.exports = config => {
-	ow(config, ow.object.exactShape({
-		render: ow.optional.function,
-		createNode: ow.function,
-		createTextNode: ow.function,
-		setTextNodeValue: ow.function,
-		appendNode: ow.function,
-		insertBeforeNode: ow.optional.function,
-		updateNode: ow.optional.function,
-		removeNode: ow.optional.function
-	}));
+	ow(
+		config,
+		ow.object.exactShape({
+			render: ow.optional.function,
+			createNode: ow.function,
+			createTextNode: ow.function,
+			setTextNodeValue: ow.function,
+			appendNode: ow.function,
+			insertBeforeNode: ow.optional.function,
+			updateNode: ow.optional.function,
+			removeNode: ow.optional.function,
+		}),
+	);
 
 	const fullConfig = {
 		schedulePassiveEffects: unstable_scheduleCallback, // eslint-disable-line camelcase
@@ -65,14 +71,18 @@ module.exports = config => {
 		},
 		prepareUpdate: () => true,
 		commitUpdate: (node, updatePayload, type, oldProps, newProps) => {
-			config.updateNode(node, omit(oldProps, 'children'), omit(newProps, 'children'));
+			config.updateNode(
+				node,
+				omit(oldProps, 'children'),
+				omit(newProps, 'children'),
+			);
 		},
 		commitTextUpdate: (node, oldText, newText) => {
 			config.setTextNodeValue(node, newText);
 		},
 		removeChild: (parentNode, childNode) => {
 			config.removeNode(parentNode, childNode);
-		}
+		},
 	};
 
 	const reconciler = createReconciler(fullConfig);
@@ -83,8 +93,8 @@ module.exports = config => {
 
 			return {
 				render: node => reconciler.updateContainer(node, container),
-				unmount: () => reconciler.updateContainer(null, container)
+				unmount: () => reconciler.updateContainer(null, container),
 			};
-		}
+		},
 	};
 };
