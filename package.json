@@ -27,8 +27,8 @@
 	"dependencies": {
 		"object.omit": "^3.0.0",
 		"ow": "^0.13.2",
-		"react-reconciler": "^0.21.0",
-		"scheduler": "^0.15.0"
+		"react-reconciler": "^0.26.2",
+		"scheduler": "^0.20.2"
 	},
 	"devDependencies": {
 		"@babel/preset-react": "^7.0.0",

@@ -32,7 +32,7 @@ module.exports = config => {
 		cancelPassiveEffects: unstable_cancelCallback, // eslint-disable-line camelcase
 		now: Date.now,
 		getRootHostContext: () => NO_CONTEXT,
-		prepareForCommit: noop,
+		prepareForCommit: () => null,
 		resetAfterCommit: () => {
 			if (typeof config.render === 'function') {
 				config.render();
@@ -60,7 +60,7 @@ module.exports = config => {
 		insertBefore: (parentNode, newChildNode, beforeChildNode) => {
 			config.insertBeforeNode(parentNode, newChildNode, beforeChildNode);
 		},
-		finalizeInitialChildren: noop,
+		finalizeInitialChildren: () => false,
 		supportsMutation: true,
 		appendChildToContainer: (parentNode, childNode) => {
 			config.appendNode(parentNode, childNode);
@@ -85,18 +85,23 @@ module.exports = config => {
 		removeChild: (parentNode, childNode) => {
 			config.removeNode(parentNode, childNode);
 		},
+		clearContainer: container => {
+			container.childNodes = [];
+		},
 	};
 
 	const reconciler = createReconciler(fullConfig);
 
 	return {
 		create: rootNode => {
-			const container = reconciler.createContainer(rootNode, false, false);
+			const container = reconciler.createContainer(rootNode, 0, false, null);
 
 			return {
-				render: node => reconciler.updateContainer(node, container),
-				unmount: () => reconciler.updateContainer(null, container),
+				render: node => reconciler.updateContainer(node, container, null, noop),
+				unmount: () => reconciler.updateContainer(null, container, null, noop),
 			};
 		},
 	};
 };
+
+export default reconciled;
