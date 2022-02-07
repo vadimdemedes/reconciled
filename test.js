@@ -92,6 +92,7 @@ test('render node with text content', t => {
 });
 
 test('render node with several text nodes', t => {
+	// eslint-disable-next-line react/jsx-curly-brace-presence
 	t.is(render(<div>Hello, {'Jane'}</div>).serialize(), '<div>Hello, Jane</div>');
 });
 
@@ -136,22 +137,27 @@ test('remove node prop', t => {
 });
 
 test('add text node', t => {
+	// eslint-disable-next-line react/jsx-curly-brace-presence
 	const {serialize, rerender} = render(<div>Hello, {'X'}</div>);
 	t.is(serialize(), '<div>Hello, X</div>');
 
+	// eslint-disable-next-line react/jsx-curly-brace-presence
 	rerender(<div>Hello, {'X'} and {'Y'}</div>);
 	t.is(serialize(), '<div>Hello, X and Y</div>');
 });
 
 test('change text node', t => {
+	// eslint-disable-next-line react/jsx-curly-brace-presence
 	const {serialize, rerender} = render(<div>Hello, {'X'}</div>);
 	t.is(serialize(), '<div>Hello, X</div>');
 
+	// eslint-disable-next-line react/jsx-curly-brace-presence
 	rerender(<div>Hello, {'Y'}</div>);
 	t.is(serialize(), '<div>Hello, Y</div>');
 });
 
 test('remove text node', t => {
+	// eslint-disable-next-line react/jsx-curly-brace-presence
 	const {serialize, rerender} = render(<div>Hello, {'X'}</div>);
 	t.is(serialize(), '<div>Hello, X</div>');
 
