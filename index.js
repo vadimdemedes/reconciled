@@ -1,18 +1,17 @@
-'use strict';
-const {
+import {
 	// eslint-disable-next-line camelcase
 	unstable_scheduleCallback,
 	// eslint-disable-next-line camelcase
 	unstable_cancelCallback,
-} = require('scheduler');
-const createReconciler = require('react-reconciler');
-const omit = require('object.omit');
-const ow = require('ow');
+} from 'scheduler';
+import createReconciler from 'react-reconciler';
+import omit from 'lodash.omit';
+import ow from 'ow';
 
 const NO_CONTEXT = true;
 const noop = () => {};
 
-module.exports = config => {
+const reconciled = config => {
 	ow(
 		config,
 		ow.object.exactShape({

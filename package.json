@@ -9,11 +9,13 @@
 		"email": "vdemedes@gmail.com",
 		"url": "vadimdemedes.com"
 	},
+	"type": "module",
+	"exports": "./index.js",
 	"engines": {
-		"node": ">=8.3.0"
+		"node": "^12.20.0 || ^14.13.1 || >=16.0.0"
 	},
 	"scripts": {
-		"test": "xo && ava"
+		"test": "prettier --check index.js && xo && ava"
 	},
 	"files": [
 		"index.js"
@@ -25,27 +27,30 @@
 		"react-reconciler"
 	],
 	"dependencies": {
-		"object.omit": "^3.0.0",
+		"lodash.omit": "^4.5.0",
 		"ow": "^0.13.2",
 		"react-reconciler": "^0.26.2",
 		"scheduler": "^0.20.2"
 	},
 	"devDependencies": {
-		"@babel/preset-react": "^7.0.0",
-		"@babel/register": "^7.17.0",
+		"@babel/cli": "^7.17.0",
+		"@babel/core": "^7.17.0",
+		"@babel/preset-react": "^7.16.7",
 		"@vdemedes/prettier-config": "^2.0.1",
 		"ava": "^4.0.1",
+		"babel-register-esm": "^1.2.1",
 		"eslint-config-xo-react": "^0.26.0",
 		"eslint-plugin-react": "^7.28.0",
 		"eslint-plugin-react-hooks": "^4.3.0",
 		"prettier": "^2.5.1",
 		"react": "^17.0.2",
 		"undom": "^0.4.0",
-		"xo": "^0.39.1"
+		"xo": "^0.47.0"
 	},
 	"ava": {
-		"require": [
-			"@babel/register"
+		"nodeArguments": [
+			"--loader",
+			"babel-register-esm"
 		]
 	},
 	"babel": {

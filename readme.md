@@ -13,7 +13,7 @@ $ npm install reconciled
 Here's a minimal version of `react-dom` implemented with `reconciled` without support for updates or events:
 
 ```jsx
-const reconciled = require('reconciled');
+import reconciled from 'reconciled';
 
 const reconciler = reconciled({
 	createNode: type => document.createElement(type),

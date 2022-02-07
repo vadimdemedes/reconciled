@@ -1,7 +1,7 @@
-const React = require('react');
-const undom = require('undom');
-const test = require('ava');
-const reconciled = require('.');
+import React from 'react';
+import undom from 'undom';
+import test from 'ava';
+import reconciled from './index.js';
 
 const document = undom();
 
