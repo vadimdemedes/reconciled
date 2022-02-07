@@ -10,7 +10,7 @@
 		"url": "vadimdemedes.com"
 	},
 	"engines": {
-		"node": ">=8"
+		"node": ">=8.3.0"
 	},
 	"scripts": {
 		"test": "xo && ava"
@@ -32,24 +32,26 @@
 	},
 	"devDependencies": {
 		"@babel/preset-react": "^7.0.0",
+		"@babel/register": "^7.17.0",
 		"@vdemedes/prettier-config": "^2.0.1",
-		"ava": "^2.2.0",
-		"eslint-config-xo-react": "^0.20.0",
-		"eslint-plugin-react": "^7.14.3",
-		"eslint-plugin-react-hooks": "^1.7.0",
+		"ava": "^4.0.1",
+		"eslint-config-xo-react": "^0.26.0",
+		"eslint-plugin-react": "^7.28.0",
+		"eslint-plugin-react-hooks": "^4.3.0",
 		"prettier": "^2.5.1",
-		"react": "^16.9.0",
+		"react": "^17.0.2",
 		"undom": "^0.4.0",
-		"xo": "^0.24.0"
+		"xo": "^0.39.1"
 	},
 	"ava": {
-		"babel": {
-			"testOptions": {
-				"presets": [
-					"@babel/preset-react"
-				]
-			}
-		}
+		"require": [
+			"@babel/register"
+		]
+	},
+	"babel": {
+		"presets": [
+			"@babel/preset-react"
+		]
 	},
 	"xo": {
 		"extends": "xo-react",

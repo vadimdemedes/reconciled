@@ -1,8 +1,10 @@
 'use strict';
 const {
+	// eslint-disable-next-line camelcase
 	unstable_scheduleCallback,
+	// eslint-disable-next-line camelcase
 	unstable_cancelCallback,
-} = require('scheduler'); // eslint-disable-line camelcase
+} = require('scheduler');
 const createReconciler = require('react-reconciler');
 const omit = require('object.omit');
 const ow = require('ow');

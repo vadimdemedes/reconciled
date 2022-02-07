@@ -1,36 +1,36 @@
-import React from 'react';
-import undom from 'undom';
-import test from 'ava';
-import reconciled from '.';
+const React = require('react');
+const undom = require('undom');
+const test = require('ava');
+const reconciled = require('.');
 
 const document = undom();
 
 // Utility to serialize undom elements into HTML string, copied from undom's readme and reformatted
-const serialize = el => {
-	if (el.nodeType === 3) {
-		return el.textContent;
+const serialize = element => {
+	if (element.nodeType === 3) {
+		return element.textContent;
 	}
 
-	const name = String(el.nodeName).toLowerCase();
-	let str = '<' + name;
+	const name = String(element.nodeName).toLowerCase();
+	let output = '<' + name;
 	let c;
 	let i;
 
-	for (i = 0; i < el.attributes.length; i++) {
-		str += ' ' + el.attributes[i].name + '="' + el.attributes[i].value + '"';
+	for (i = 0; i < element.attributes.length; i++) {
+		output += ' ' + element.attributes[i].name + '="' + element.attributes[i].value + '"';
 	}
 
-	str += '>';
+	output += '>';
 
-	for (i = 0; i < el.childNodes.length; i++) {
-		c = serialize(el.childNodes[i]);
+	for (i = 0; i < element.childNodes.length; i++) {
+		c = serialize(element.childNodes[i]);
 
 		if (c) {
-			str += c;
+			output += c;
 		}
 	}
 
-	return str + '</' + name + '>';
+	return output + '</' + name + '>';
 };
 
 // Naive reconciler for testing
@@ -48,7 +48,9 @@ const config = {
 	setTextNodeValue: (node, text) => {
 		node.textContent = text;
 	},
-	appendNode: (parentNode, childNode) => parentNode.appendChild(childNode), // eslint-disable-line unicorn/prefer-node-append
+	// eslint-disable-next-line unicorn/prefer-dom-node-append
+	appendNode: (parentNode, childNode) => parentNode.appendChild(childNode),
+	// eslint-disable-next-line unicorn/prefer-modern-dom-apis
 	insertBeforeNode: (parentNode, newChildNode, beforeChildNode) => parentNode.insertBefore(newChildNode, beforeChildNode),
 	updateNode: (node, oldProps, newProps) => {
 		for (const key of Object.keys(oldProps)) {
@@ -61,6 +63,7 @@ const config = {
 			node.setAttribute(key, value);
 		}
 	},
+	// eslint-disable-next-line unicorn/prefer-dom-node-remove
 	removeNode: (parentNode, childNode) => parentNode.removeChild(childNode)
 };
 
